@@ -1,15 +1,17 @@
 #include <SDL.h>
 #include <SDL_image.h>
+#include <stdio.h>
+#include <time.h>
 #include "snake.h"
 
 int main(int argc, char* args[]) {
-    // Initialisation de SDL et SDL_image
+
     if (SDL_Init(SDL_INIT_VIDEO) < 0 || IMG_Init(IMG_INIT_PNG) == 0) {
         printf("SDL could not initialize! SDL_Error: %s\n", SDL_GetError());
         return 1;
     }
 
-    SDL_Window* window = SDL_CreateWindow("SDL Tutorial", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, WINDOW_WIDTH, WINDOW_HEIGHT, SDL_WINDOW_SHOWN);
+    SDL_Window* window = SDL_CreateWindow("Snake : le vrai", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, WINDOW_WIDTH, WINDOW_HEIGHT, SDL_WINDOW_SHOWN);
     if (window == NULL) {
         printf("Window could not be created! SDL_Error: %s\n", SDL_GetError());
         return 1;
@@ -33,6 +35,7 @@ int main(int argc, char* args[]) {
 
     int quit = 0;
     SDL_Event e;
+    printf("\n\n----------------Lancement du jeu SNAKE----------------\n\n");
     while (!quit) {
         while (SDL_PollEvent(&e)) {
             if (e.type == SDL_QUIT) {
@@ -49,15 +52,14 @@ int main(int argc, char* args[]) {
 
         updateSnake();
         if (checkCollisions()) {
-            printf("Game Over\n");
-            // Afficher l'image "Game Over"
+            printf("----------------Fin de la partie, merci pour votre temps!----------------\n\n");
+            printf("Le score de votre partie est : %d points\n\n", score);
             SDL_RenderClear(renderer);
             SDL_RenderCopy(renderer, gameOverTexture, NULL, NULL);
             SDL_RenderPresent(renderer);
-            SDL_Delay(3000); // Afficher pendant 3 secondes
+            SDL_Delay(3000);
             quit = 1;
         } else {
-            // DÃ©finir la couleur de fond en beige (R: 245, G: 245, B: 220, A: 255)
             SDL_SetRenderDrawColor(renderer, 245, 245, 220, 255);
             SDL_RenderClear(renderer);
             renderGame(renderer);
