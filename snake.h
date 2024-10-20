@@ -48,6 +48,7 @@ extern SDL_Texture* tailLeftTexture;
 extern SDL_Texture* foodTexture;
 extern SDL_Texture* wallTexture;
 extern int score;
+extern int scoreFinal;
 
 int initGame(SDL_Renderer* renderer);
 void initSnake();

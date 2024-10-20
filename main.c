@@ -52,8 +52,8 @@ int main(int argc, char* args[]) {
 
         updateSnake();
         if (checkCollisions()) {
-            printf("----------------Fin de la partie, merci pour votre temps!----------------\n\n");
-            printf("Le score de votre partie est : %d points\n\n", score);
+            printf("\n\n----------------Fin de la partie, merci pour votre temps!----------------\n\n");
+            printf("----------------Le score de votre partie est : %d points----------------\n\n", scoreFinal);
             SDL_RenderClear(renderer);
             SDL_RenderCopy(renderer, gameOverTexture, NULL, NULL);
             SDL_RenderPresent(renderer);

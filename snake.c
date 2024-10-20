@@ -21,6 +21,7 @@ SDL_Texture* tailDownTexture;
 SDL_Texture* tailLeftTexture;
 SDL_Texture* foodTexture;
 SDL_Texture* wallTexture;
+int scoreFinal = 0;
 int score = 0;
 
 SDL_Texture* loadTexture(const char* path, SDL_Renderer* renderer) {
@@ -110,6 +111,9 @@ void placeFood() {
                 break;
             }
         }
+        if (score > 0){
+        printf("%d, ", score);
+        fflush(stdout);}//fournit par chat gpt
     }
 }
 
@@ -142,7 +146,8 @@ void updateSnake() {
         }
 
         placeFood();
-        score++;
+        scoreFinal++;
+        score = scoreFinal + 1;
     }
 }
 
